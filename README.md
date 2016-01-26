@@ -223,10 +223,10 @@ GraphQL can be used as an alternative to REST API requests.
 With a REST API request, the client makes a request from a 'view' to an endpoint for a specific 'model' on the server. The server then sends the requested result back to the client. The problem with this method is that anytime a 'view' is updated _(by adding more data)_ the 'model' must also be updated. Over time this causes the size of the payload to increase because REST API requests cannot select an individual column of a database. All of the data has to be sent every time due to the fact that the iteration of both 'models' and 'views' are coupled. This also means that multiple requests will have to be sent to multiple endpoints to retrieve different types data.
 
 #### GraphQL
-With a GraphQL query, the server expresses the possibilities of what you can query across the entire graph of your application using the type system. The client specifies its requirements via a specific GraphQL query. This means that the 'models' and 'views' can now be iterated on the client which removes an element of client-server coupling that's pretty undesirable. The client asks the server for a certain data shape and then the server replies with the relevant data.
+With a GraphQL query, the server expresses the possibilities of what you can query across the entire graph of your application using the type system. The client specifies its requirements via a specific GraphQL query. This means that the 'models' and 'views' can now be iterated on the client which removes an element of client-server coupling that's pretty undesirable. The client asks the server for a certain data shape and then the server replies with the relevant data. This is the equivalent to having just one endpoint with access to the complete data model of your application.
 
 ## Fragments
-As the products you build become more complex, so too do your GraphQL queries. To tackle this GraphQL provides a method of decomposition called **_fragments_**. _(a fragment can really be classed as sub-query)_
+As the products you build become more complex, so too do your GraphQL queries. To tackle this GraphQL provides a method of decomposition called **_fragments_**. They are reusable as they can be used across many queries _(a fragment can really be classed as sub-query)_
 
 Here's an example of a fragment, we can use one of the previous examples to demonstrate it:
 
@@ -243,7 +243,7 @@ Here's an example of a fragment, we can use one of the previous examples to demo
    }
  }
 ```
-This query can be split. Here we've split it on the friends node and created a friendFragment. We've specified that the fragment is on the 'User' type of the user node: 
+This query can be split. Here we've split it on the friends node and created a friendFragment. We've specified that the fragment is on the 'User' type of the user node:
 ```
  {
    user {
@@ -262,3 +262,5 @@ This query can be split. Here we've split it on the friends node and created a f
    }
  }
  ```
+
+ ## Relay?
