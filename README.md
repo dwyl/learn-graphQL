@@ -225,6 +225,8 @@ With a REST API request, the client makes a request from a 'view' to an endpoint
 #### GraphQL
 With a GraphQL query, the server expresses the possibilities of what you can query across the entire graph of your application using the type system. The client specifies its requirements via a specific GraphQL query. This means that the 'models' and 'views' can now be iterated on the client which removes an element of client-server coupling that's pretty undesirable. The client asks the server for a certain data shape and then the server replies with the relevant data. This is the equivalent to having just one endpoint with access to the complete data model of your application.
 
+GraphiQL
+
 ## Fragments
 As the products you build become more complex, so too do your GraphQL queries. To tackle this GraphQL provides a method of decomposition called **_fragments_**. They are reusable as they can be used across many queries _(a fragment can really be classed as sub-query)_
 
@@ -262,5 +264,3 @@ This query can be split. Here we've split it on the friends node and created a f
    }
  }
  ```
-
- ## Relay?
