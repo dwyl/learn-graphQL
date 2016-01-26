@@ -219,4 +219,10 @@ The **_type system_** is the method through which data is accessed with GraphQL.
 ## GraphQL vs REST API Requests
 GraphQL can be used as an alternative to REST API requests.
 
+#### REST API
 With a REST API request, the client makes a request from a 'view' to an endpoint for a specific 'model' on the server. The server then sends the requested result back to the client. The problem with this method is that anytime a 'view' is updated _(by adding more data)_ the 'model' must also be updated. Over time this causes the size of the payload to increase because REST API requests cannot select an individual column of a database. All of the data has to be sent every time due to the fact that the iteration of both 'models' and 'views' are coupled. This also means that multiple requests will have to be sent to multiple endpoints to retrieve different types data.
+
+#### GraphQL
+With a GraphQL query, the server expresses the possibilities of what you can query across the entire graph of your application using the type system. The client specifies its requirements via a specific GraphQL query. This means that the 'models' and 'views' can now be iterated on the client which removes an element of client-server coupling that's pretty undesirable. The client asks the server for a certain data shape and then the server replies with the relevant data.
+
+## Fragments
