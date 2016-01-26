@@ -157,7 +157,7 @@ The result would look something like this:
  }
 ```
 ## Type System
-Every GraphQL server exposes an application specific schema to those who use it. At every step along the way with a query you know exactlywhat **_type_** you have at each specific node which means that you know exactly what type of fields you can query. As you descend down through the query, different **_types_** become in context. Let's have a look at an example:
+Every GraphQL server exposes an application specific schema to those who use it. You can create your types in either a ```.js``` file or a ```schema.graphql``` file. At every step along the way with a query you know exactlywhat **_type_** you have at each specific node which means that you know exactly what type of fields you can query. As you descend down through the query, different **_types_** become in context. Let's have a look at an example:
 
 ```
  {
@@ -195,7 +195,7 @@ Let's move down the query...
  profilePicture(size: 300),
  friends(orderby: IMPORTANCE, first: 1)
 ```
-The friends node takes the type 'User' which is the same object structure as this one because GraphQL is a coherent type system
+The friends node takes the type 'User' which is the same object structure as this one because GraphQL is a coherent type system.
 ```js
  type User {
    name : String
