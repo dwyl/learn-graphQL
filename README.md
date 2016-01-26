@@ -29,6 +29,7 @@ In GraphQL you can parameterize your queries to return explicit results. For exa
 ```
  {
    user(id: 1) {
+     id,
      name
    }
  }
