@@ -157,6 +157,60 @@ The result would look something like this:
  }
 ```
 ## Type System
+Every GraphQL server exposes an application specific schema to those who use it. At every step along the way with a query you know exactlywhat **_type_** you have at each specific node which means that you know exactly what type of fields you can query. As you descend down through the query, different **_types_** become in context. Let's have a look at an example:
+
+```
+ {
+   user {
+     name,
+     profilePicture(size: 300) {
+       width,
+       height,
+       url
+     },
+     friends(orderby: IMPORTANCE, first: 1) {
+       name,
+       events(first: 1) {
+         name
+       }
+     }
+   }
+ }
+```
+With every GraphQL schema there is a **_root_** type in context that determines what nodes you can start your query at. Let's break it down. The root type in our example is the 'user' node:
+
+```
+ {
+   user
+```
+The root node has a type 'Query':
+```js
+ type Query {
+   user(id: Int) : User
+ }
+```
+Let's move down the query...
+```
+ name,
+ profilePicture(size: 300),
+ friends(orderby: IMPORTANCE, first: 1)
+```
+```js
+ type User {
+   name : String
+   profilePicture(size: Int = 50) : profilePicture
+   friends(first: Int, orderby: FriendOrderEnum) : [User]
+   events(first: Int) : [Event]
+ }
+
+ enum FriendOrderEnum {
+   FIRST_NAME,
+   LAST_NAME,
+   IMPORTANCE
+ }
+```
+
+
 
 ## GraphQL vs REST API Requests
 GraphQL can be used as an alternative to REST API requests. With a REST API request, the client makes a request from a 'view' to an endpoint for a specific 'model' on the server. The server then sends the requested result back to the client. The problem with this method is that anytime a 'view' is updated _(by adding more data)_ the 'model' must also be updated. Over time this causes the size of the payload to increase because REST API requests cannot select an individual column of a database. All of the data has to be sent every time due to the fact that the iteration of both 'models' and 'views' are coupled.  
