@@ -210,9 +210,13 @@ The friends node takes the type 'User' which is the same object structure as thi
    IMPORTANCE
  }
 ```
-If you have thousands of different data types, it can become expensive to maintain an index for them which means that you'll need to make an explicit decision _(whitelisting)_ as to what you can order your data by. This is where the FriendOrderEnum comes in and it's saying that it can provide ordering by FIRST_NAME, LAST_NAME or IMPORTANCE. It can only provide these explicit options because it can't guarantee that any others will be scalable (across millions of users). The IMPORTANCE enum is an example taken from Facebook where they calculate an importance score based on your interactions with your friends and then ranks them in order. 
+If you have thousands of different data types, it can become expensive to maintain an index for them which means that you'll need to make an explicit decision _(whitelisting)_ as to what you can order your data by. This is where the FriendOrderEnum comes in and it's saying that it can provide ordering by ```FIRST_NAME```, ```LAST_NAME``` or ```IMPORTANCE```. It can only provide these explicit options because it can't guarantee that any others will be scalable (across millions of users). The ```IMPORTANCE``` enum is an example taken from Facebook where they calculate an importance score based on your interactions with your friends and then ranks them in order.
+
+The **_type system_** is the method through which data is accessed with GraphQL.
 
 
 
 ## GraphQL vs REST API Requests
-GraphQL can be used as an alternative to REST API requests. With a REST API request, the client makes a request from a 'view' to an endpoint for a specific 'model' on the server. The server then sends the requested result back to the client. The problem with this method is that anytime a 'view' is updated _(by adding more data)_ the 'model' must also be updated. Over time this causes the size of the payload to increase because REST API requests cannot select an individual column of a database. All of the data has to be sent every time due to the fact that the iteration of both 'models' and 'views' are coupled.  
+GraphQL can be used as an alternative to REST API requests.
+
+With a REST API request, the client makes a request from a 'view' to an endpoint for a specific 'model' on the server. The server then sends the requested result back to the client. The problem with this method is that anytime a 'view' is updated _(by adding more data)_ the 'model' must also be updated. Over time this causes the size of the payload to increase because REST API requests cannot select an individual column of a database. All of the data has to be sent every time due to the fact that the iteration of both 'models' and 'views' are coupled. This also means that multiple requests will have to be sent to multiple endpoints to retrieve different types data.
