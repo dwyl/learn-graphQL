@@ -10,7 +10,7 @@ Here's a basic example of a GraphQL query and the returned result:
 GraphQL query
 ```
  {
-   me {
+   user {
      name
    }
  }
@@ -18,7 +18,7 @@ GraphQL query
 JSON result
 ```json
  {
-   "me" : {
+   "user" : {
      "name" : "John Smith"
    }
  }
@@ -56,7 +56,7 @@ You can parameterize fields at any query level. Imagine we are querying a user p
    }
  }
 ```
-
+Which would return a result like this:
 ```json
  {
    "user" : {
@@ -70,27 +70,30 @@ You can parameterize fields at any query level. Imagine we are querying a user p
    }
  }
 ```
-The profile picture has been returned with the dimensions specified in the query.
+
 
 ## Aliasing
 Aliasing allows you to return different version results of the same object. For example if you wanted to make another request for a profile picture but this time you wanted both a large and a small version, you could write two request aliases like this:
 
 ```
- user {
-   id,
-   name,
-   bigPic: profilePicture(size: 600) {
-     width,
-     height,
-     url
-   },
-   smallPic: profilePicture(size: 50) {
-     width,
-     height,
-     url
+ {
+   user {
+     id,
+     name,
+     bigPic: profilePicture(size: 600) {
+       width,
+       height,
+       url
+     },
+     smallPic: profilePicture(size: 50) {
+       width,
+       height,
+       url
+     }
    }
  }
 ```
+Which returns both the "bigPic" and the "smallPic":
 ```json
  "user" : {
    "id"   : 1,
@@ -105,6 +108,29 @@ Aliasing allows you to return different version results of the same object. For 
      "height" : 50,
      "url"    : "https://cdn/50.jpg"
    }
+ }
+```
+
+## Descending Down Connections
+GraphQL provides a natural way of expressing the hierarchical data that you want. You say _declaritively_ exactly what you want and you get a response that looks exactly like the query. Say you wanted to return a list of names of the events that your friends are going to, you could write a query like this:
+
+```
+ {
+   user {
+     name,
+     friends {
+       name,
+       events {
+         name
+       }
+     }
+   }
+ }
+```
+The result would look something like this:
+```json
+ {
+   
  }
 ```
 
