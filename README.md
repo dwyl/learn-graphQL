@@ -130,9 +130,33 @@ GraphQL provides a natural way of expressing the hierarchical data that you want
 The result would look something like this:
 ```json
  {
-   
+   "user" : {
+     "name" : "John Smith",
+     "friends" : [
+       {
+         "name" : "Ben Thompson",
+         "events" : [
+           {
+             "name" : "Don't Pitch Me Bro!"
+           },
+           {
+             "name" : "Apps Junction"
+           }
+         ]
+       },
+       {
+         "name" : "Kate Wright",
+         "events" : [
+           {
+             "name" : "Don't pitch Me Bro!"
+           }
+         ]
+       }
+     ]
+   }
  }
 ```
+## Type System
 
 ## GraphQL vs REST API Requests
 GraphQL can be used as an alternative to REST API requests. With a REST API request, the client makes a request from a 'view' to an endpoint for a specific 'model' on the server. The server then sends the requested result back to the client. The problem with this method is that anytime a 'view' is updated _(by adding more data)_ the 'model' must also be updated. Over time this causes the size of the payload to increase because REST API requests cannot select an individual column of a database. All of the data has to be sent every time due to the fact that the iteration of both 'models' and 'views' are coupled.  
