@@ -195,10 +195,11 @@ Let's move down the query...
  profilePicture(size: 300),
  friends(orderby: IMPORTANCE, first: 1)
 ```
+The friends node takes the type 'User' which is the same object structure as this one because GraphQL is a coherent type system
 ```js
  type User {
    name : String
-   profilePicture(size: Int = 50) : profilePicture
+   profilePicture(size: Int = 50) : ProfilePicture
    friends(first: Int, orderby: FriendOrderEnum) : [User]
    events(first: Int) : [Event]
  }
@@ -209,6 +210,7 @@ Let's move down the query...
    IMPORTANCE
  }
 ```
+If you have thousands of different data types, it can become expensive to maintain an index for them which means that you'll need to make an explicit decision _(whitelisting)_ as to what you can order your data by. This is where the FriendOrderEnum comes in and it's saying that it can provide ordering by FIRST_NAME, LAST_NAME or IMPORTANCE. It can only provide these explicit options because it can't guarantee that any others will be scalable (across millions of users). The IMPORTANCE enum is an example taken from Facebook where they calculate an importance score based on your interactions with your friends and then ranks them in order. 
 
 
 
