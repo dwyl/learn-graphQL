@@ -243,7 +243,7 @@ Here's an example of a fragment, we can use one of the previous examples to demo
    }
  }
 ```
-
+This query can be split. Here we've split it on the friends node and created a friendFragment. We've specified that the fragment is on the 'User' type of the user node: 
 ```
  {
    user {
