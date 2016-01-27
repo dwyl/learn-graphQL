@@ -233,6 +233,25 @@ GraphiQL is an IDE _(Integrated Development Environment)_ for GraphQL. It's a to
 
 If you'd like to give it a try yourself you can do so  [here](http://graphql-swapi.parseapp.com/?query=%23%20Welcome%20to%20GraphiQL%0A%23%0A%23%20GraphiQL%20is%20an%20in-browser%20IDE%20for%20writing%2C%20validating%2C%20and%0A%23%20testing%20GraphQL%20queries.%0A%23%0A%23%20Type%20queries%20into%20this%20side%20of%20the%20screen%2C%20and%20you%20will%0A%23%20see%20intelligent%20typeaheads%20aware%20of%20the%20current%20GraphQL%20type%20schema%20and%0A%23%20live%20syntax%20and%20validation%20errors%20highlighted%20within%20the%20text.%0A%23%0A%23%20To%20bring%20up%20the%20auto-complete%20at%20any%20point%2C%20just%20press%20Ctrl-Space.%0A%23%0A%23%20Press%20the%20run%20button%20above%2C%20or%20Cmd-Enter%20to%20execute%20the%20query%2C%20and%20the%20result%0A%23%20will%20appear%20in%20the%20pane%20to%20the%20right.%0A%0A)
 
+You can install GraphiQL from npm. It exports a single React component and expects a function that fetches data from GraphQL. Here is a basic example taken from the [npm module](https://www.npmjs.com/package/graphiql):
+
+```javascript
+import React from 'react';
+import ReactDOM from 'react-dom';
+import GraphiQL from 'graphiql';
+import fetch from 'isomorphic-fetch';
+
+function graphQLFetcher(graphQLParams) {
+  return fetch(window.location.origin + '/graphql', {
+    method: 'post',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(graphQLParams),
+  }).then(response => response.json());
+}
+
+ReactDOM.render(<GraphiQL fetcher={graphQLFetcher} />, document.body);
+```
+
 #### Integrating GraphQL with REST APIs
 It is possible to use GraphQL and REST APIs in tandem. You can create a simple GraphQL server as well as a data centre which can interact with the REST server. Then you can express your own **type** system so that the data can be picked up by GraphQL. You can then point GraphiQL at the data to show that it's working. This means that all of your REST interactions are now within your data centre.
 
