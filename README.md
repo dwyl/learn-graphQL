@@ -226,7 +226,15 @@ With a REST API request, the client makes a request from a 'view' to an endpoint
 #### GraphQL
 With a GraphQL query, the server expresses the possibilities of what you can query across the entire graph of your application using the type system. The client specifies its requirements via a specific GraphQL query. This means that the 'models' and 'views' can now be iterated on the client which removes an element of client-server coupling that's pretty undesirable. The client asks the server for a certain data shape and then the server replies with the relevant data. This is the equivalent to having just one endpoint with access to the complete data model of your application.
 
-GraphiQL
+### GraphiQL
+GraphiQL is an IDE _(Integrated Development Environment)_ for GraphQL. It's a tool that allows you to simulate and test queries and view the results instantaneously. This tool is able to demonstrate the full potential of transitioning from REST API calls to GraphQL. We made a query to the GraphiQL example data structure (information about the Star Wars episodes). We queried for the names of all the characters from all of the Star Wars films and here is what it returned:
+
+![graphiql example](https://cloud.githubusercontent.com/assets/12450298/12613397/5836d92c-c4f1-11e5-86c2-1729cc1568aa.png)
+
+If you'd like to give it a try yourself, click [here](http://graphql-swapi.parseapp.com/?query=%23%20Welcome%20to%20GraphiQL%0A%23%0A%23%20GraphiQL%20is%20an%20in-browser%20IDE%20for%20writing%2C%20validating%2C%20and%0A%23%20testing%20GraphQL%20queries.%0A%23%0A%23%20Type%20queries%20into%20this%20side%20of%20the%20screen%2C%20and%20you%20will%0A%23%20see%20intelligent%20typeaheads%20aware%20of%20the%20current%20GraphQL%20type%20schema%20and%0A%23%20live%20syntax%20and%20validation%20errors%20highlighted%20within%20the%20text.%0A%23%0A%23%20To%20bring%20up%20the%20auto-complete%20at%20any%20point%2C%20just%20press%20Ctrl-Space.%0A%23%0A%23%20Press%20the%20run%20button%20above%2C%20or%20Cmd-Enter%20to%20execute%20the%20query%2C%20and%20the%20result%0A%23%20will%20appear%20in%20the%20pane%20to%20the%20right.%0A%0A)
+
+#### Integrating GraphQL with REST APIs
+It is possible to use GraphQL and REST APIs in tandem. You can create a simple GraphQL server as well as a data centre which can interact with the REST server. Then you can express your own **type** system so that the data can be picked up by GraphQL. You can then point GraphiQL at the data to show that it's working. This means that all of your REST interactions are now within your data centre. 
 
 ## Fragments
 As the products you build become more complex, so too do your GraphQL queries. To tackle this GraphQL provides a method of decomposition called **_fragments_**. They are reusable as they can be used across many queries _(a fragment can really be classed as sub-query)_
