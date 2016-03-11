@@ -1,4 +1,6 @@
-# Learn GraphQL [Work In Progress!!!]
+# Learn GraphQL [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/dwyl/learn-graphQL/issues)
+
+
 ![GraphQL nodeJS logo](https://www.reindex.io/blog/building-a-graphql-server-with-node-js-and-sql/GraphQL_NodeJS.png)  
 Learn to use GraphQL - A query language that allows client applications to specify their data fetching requirements _(it's really just a way of thinking about data!)_
 
@@ -33,7 +35,7 @@ In GraphQL you can parameterize your queries to return explicit results. For exa
      name
    }
  }
-```    
+```
 ```json
  {
    "user" : {
